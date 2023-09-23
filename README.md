@@ -14,5 +14,11 @@ Or you can use Free GPU resources like [Google Colab](https://colab.google/).
 ## Setup 
 1- Clone this repository to your local machine:
 ```
-gh repo clone salma-303/YOLOv5-Custom-Training
+git clone https://github.com/salma-303/YOLOv5-Custom-Training
 ```
+2- Change your working directory to the repository:
+```
+cd YOLOv5-Custom-Training
+```
+3- Run setup cell in `YOLOv5-Car-Detection.ipynb`
+
