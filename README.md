@@ -11,6 +11,7 @@ Git: If you haven't already, install Git by following the instructions [here](ht
 NVIDIA GPU (optional): Training YOLOv5 is significantly faster on a GPU. If you have access to an NVIDIA GPU, make sure you have installed the [NVIDIA CUDA toolkit](https://developer.nvidia.com/cuda-toolkit) and [cuDNN](https://developer.nvidia.com/cudnn) for GPU support.
 Or you can use Free GPU resources like [Google Colab](https://colab.google/).
 
+
 ## Setup 
 1. Clone this repository to your local machine:
 ```ruby
@@ -58,6 +59,7 @@ The following transformations were applied to the bounding boxes of each image:
 * Random shear of between -15° to +15° horizontally and -15° to +15° vertically
 * Random Gaussian blur of between 0 and 2.5 pixels
 
+
 ## Training
 To train YOLOv5 on your custom dataset for car detection, follow these steps:
 
@@ -86,7 +88,18 @@ python val.py --data data.yaml --weights runs/train/exp/weights/best.pt
 ```ruby
 python detect.py --weights runs/train/exp/weights/best.pt --img-size 640 --source path/to/your/image.jpg
 ```
-I provided my pre-trained model on car detection using YOLOv5s, you can find it in `train` folder.
+I provided my pre-trained model on car detection using YOLOv5s; you can find it in `train` folder.
+Also, I added three lines in `detect.py` to  Print in the terminal the Bounding Box Coordinates (centroid) of 
+the detected object.
+```ruby
+# Calculate the centroid
+centroid_x = (xyxy[0] + xyxy[2]) / 2
+centroid_y = (xyxy[1] + xyxy[3]) / 2
+
+# Print the centroid coordinates along with other information
+print(f"Object: {label} - Centroid: ({centroid_x:.2f}, {centroid_y:.2f}) - Confidence: {confidence_str}")
+```
+
 
 ## Acknowledgments
 This repository is based on the official [YOLOv5 repository](https://github.com/ultralytics/yolov5). Please take a look at their documentation for additional information and advanced usage.
