@@ -88,7 +88,7 @@ python val.py --data data.yaml --weights runs/train/exp/weights/best.pt
 ```ruby
 python detect.py --weights runs/train/exp/weights/best.pt --img-size 640 --source path/to/your/image.jpg
 ```
-I provided my pre-trained model on car detection using YOLOv5s; you can find it in `train` folder.
+I provided my pre-trained model on car detection using YOLOv5s; you can find it in the `train` folder.
 Also, I added three lines in `detect.py` to  Print in the terminal the Bounding Box Coordinates (centroid) of 
 the detected object.
 ```ruby
@@ -99,6 +99,9 @@ centroid_y = (xyxy[1] + xyxy[3]) / 2
 # Print the centroid coordinates along with other information
 print(f"Object: {label} - Centroid: ({centroid_x:.2f}, {centroid_y:.2f}) - Confidence: {confidence_str}")
 ```
+
+## Results 
+You can see the results of my trained model `/train/exp/weights/best.pt` in this [link](https://drive.google.com/file/d/1frpBnfGUwZNKe0YbXaHOO3ee2wLercUP/view?usp=sharing)
 
 
 ## Acknowledgments
