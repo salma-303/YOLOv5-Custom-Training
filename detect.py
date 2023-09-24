@@ -36,6 +36,7 @@ import sys
 from pathlib import Path
 import cv2
 import torch
+import time 
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -82,6 +83,7 @@ def run(
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
         vid_stride=1,  # video frame-rate stride
+        fps_display=True,  # display FPS on the frame
 ):
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
@@ -118,6 +120,7 @@ def run(
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
     for path, im, im0s, vid_cap, s in dataset:
+        start_time = time.time()  # Start time for calculating FPS
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
             im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
@@ -139,6 +142,12 @@ def run(
 
         # Define the path for the CSV file
         csv_path = save_dir / 'predictions.csv'
+
+         # Calculate and display FPS
+        if fps_display:
+            fps = 1.0 / (time.time() - start_time)
+            cv2.putText(im0, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
 
         # Create or append to the CSV file
         def write_to_csv(image_name, prediction, confidence):
