@@ -1,5 +1,5 @@
 # YOLOv5-Custom-Training
-This repository contains instructions and code for training the YOLOv5 object detection model on custom data for car detection. YOLOv5 is a popular and efficient deep learning model for real-time object detection, and customizing it to detect cars in your own datasets can be a valuable asset for various applications. Please browse the YOLOv5 [Docs](https://docs.ultralytics.com/yolov5/) for details.
+This repository contains instructions and code for training the YOLOv5 object detection model on custom data for car detection. YOLOv5 is a popular and efficient deep-learning model for real-time object detection, and customizing it to detect cars in your own datasets can be a valuable asset for various applications. Please browse the YOLOv5 [Docs](https://docs.ultralytics.com/yolov5/) for details.
 
 ## Prerequisites
 Before you begin, make sure you have the following prerequisites installed and set up:
@@ -39,7 +39,7 @@ To use it in training, run this:
 
 from roboflow import Roboflow
 rf = Roboflow(api_key="YOUR API KEY")
-project = rf.workspace("skyxperts").project("yolov5-car-detection")
+project = rf.workspace("salmaskyxperts").project("yolov5-car-detection")
 dataset = project.version(2).download("yolov5")
 ```
 The dataset includes 3080 images.
