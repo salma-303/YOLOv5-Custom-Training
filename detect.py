@@ -121,6 +121,7 @@ def run(
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
     for path, im, im0s, vid_cap, s in dataset:
         start_time = time.time()  # Start time for calculating FPS
+        im0 = im0s.copy()  # Assign im0 
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
             im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
